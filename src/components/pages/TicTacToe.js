@@ -70,7 +70,7 @@ const getWinner = tiles => {
     const eigthWinningWay=((((tiles[2]!==""&& tiles[2])===tiles[4]) && ((tiles[2]!==""&& tiles[2])===tiles[6]))) && true
 
     const posibleWin=[firstWinningWay,secondWinningWay,thirdWinningWay,fourthWinningWay,fifthWinningWay,sixthWinningWay,seventhWinningWay,eigthWinningWay]
-    const result=posibleWin.includes(true)//hare que al matchear ccon el primer true de array result, me devuelva true
+    const result=posibleWin.includes(true)
 
   // calcular el ganador del partido a partir del estado del tablero
   // (existen varias formas de calcular esto, una posible es listar todos los
@@ -93,7 +93,6 @@ const useTicTacToeGameState = initialPlayer => {
  
  
   const setTileTo = (tileIndex, player) => {
-    //entonces como esta funcion maneja el onclick de cada div, la aprovecho para que cada vez que se haga click, me cambie el current player
     const newTiles=[...tiles]
     newTiles[tileIndex]=player
     setTiles(newTiles);
@@ -109,13 +108,10 @@ const useTicTacToeGameState = initialPlayer => {
     //console.log(tiles[0])  
   };
 
-  // el restart deberia pasarselo al onclick de onrestart de la winning card
   const restart = () => {
 
     setTiles(["","","","","","","","",""])
     setGameEnded(false)
-    //setGameEnded(false)
-    console.log(" para probar si lee el restart")
 
     //setGameEnded(false)
     // Reiniciar el juego a su estado inicial
@@ -125,9 +121,8 @@ const useTicTacToeGameState = initialPlayer => {
   useEffect(function() {
     if(winner || !tiles.includes("") ) {
 
-      handleCurrentPlayer() // porque al ganar, se ejecuta el handle(como siempre) y me cambia de jugador, entonces el winnercard me tira como ganador el   otro jugador, por eso aca lo vuelvo a cambiar antes del setgameEnded que me lleva a la winnercard. Es decir, gane con la X, el handle me lo cambio a O entoncess winnercard me muestra ganador O, pero si aca vuelvo a cambiar el handle antes del setGameEnded que lleva a la winner, me mostrara bien el ganador.
+      handleCurrentPlayer() 
       setGameEnded(true)
-      console.log("ganaste")
     }
     
 
