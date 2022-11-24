@@ -81,8 +81,8 @@ function MemoTest() {
     e.persist()
     setSaveSquare(prevState=>[...prevState,e.target])
     e.target.style.pointerEvents="none"
-      e.target.style.backgroundColor=color
-      setMatchState(prevState=>[...prevState,color])
+    e.target.style.backgroundColor=color
+    setMatchState(prevState=>[...prevState,color])
   } 
  
   if(matchState.length==2) {
@@ -105,10 +105,10 @@ function MemoTest() {
         setSaveSquare([])
     } else {
         setTimeout(() => {
-        saveSquare[0].style.backgroundColor="white"
-        saveSquare[1].style.backgroundColor="white"
-        saveSquare[0].style.pointerEvents=""/*** */
-        saveSquare[1].style.pointerEvents=""/*** */
+          saveSquare[0].style/*.backgroundColor*/=""
+          saveSquare[1].style/*.backgroundColor*/=""
+          //saveSquare[0].style.pointerEvents=""/*** */
+          //saveSquare[1].style.pointerEvents=""/*** */
         }, 1000);
         setTimeout(() => {
           game.style.pointerEvents="all"
@@ -118,6 +118,11 @@ function MemoTest() {
     }
     
   }
+  
+  useEffect(function() {
+    (gameState.length===12 && setGameEnded(true))
+
+  },[gameState])
 
   function restart() {
     setGameState([])
@@ -125,11 +130,6 @@ function MemoTest() {
     setGameEnded(false)
   }
 
-  useEffect(function() {
-    (gameState.length===12 && setGameEnded(true))
-
-  },[gameState])
-  
 
 
   return {colorsState,gameState,matchState,gameEnded,handleClick,setColor,restart}
