@@ -36,33 +36,20 @@ function MemoTest() {
 
     const colors=["red","red","blue","blue","green","green","yellow","yellow","orange","orange","black","black"]
     const results=[];
-    //el numero que sale random, asignarlo al nuevo array, y eliminarlo de colores con splice, y al haber uno menos en colores, hacer i-- un for para el i=11
+   
     for(let i=11;i>0;i--) {
 
       const random=Math.floor(Math.random()*(i-1+1)+1)
       results.push(colors[random])
-      colors.splice(random,1)//elimino desde el indice random, 1 elemento
+      colors.splice(random,1)
       if(colors.length===1) {
           results.push(colors[0]) 
       }
-        //este if lo pongo porque me quedaba colgando 1 elemento final en colors, entonces digo que cuando colors=1, agregue ese color a results.
     }
 
     setColorsState(results)
      
   }
-
-
-//}
-//    return results
-//lo que hice ahi fue que me agregue a results un color random, luego a colores con splice le saque ese color random. Entonces ahora el random de colores se ejecutara entre 10 indices y entre 11(arrancando desde cero), para eso esta el for, para ir restando 1 elemento.
-//console.log(results)
-
-//ahora deberia asignar results a cada square. 
-
-
-
-//funcion para asignar los colores a cada square;
 
   const winColor= {
       backgroundColor: "grey"
@@ -88,7 +75,6 @@ function MemoTest() {
   if(matchState.length==2) {
     game.style.pointerEvents="none"
         
-    //se me quedaba pegado el style none que puse ni bien hace click, ese lo puse para que no pueda seleccionar dos veces el mismo de una. Entonces me quedaba pegado en el else del matchstate, por eso lo saco en ****
     if(matchState[0]===matchState[1] ) {
         setTimeout(() => {
         setGameState(prevState=>[...prevState,matchState[0],matchState[1]])
@@ -105,8 +91,8 @@ function MemoTest() {
         setSaveSquare([])
     } else {
         setTimeout(() => {
-          saveSquare[0].style/*.backgroundColor*/=""
-          saveSquare[1].style/*.backgroundColor*/=""
+          saveSquare[0].style=""
+          saveSquare[1].style=""
           //saveSquare[0].style.pointerEvents=""/*** */
           //saveSquare[1].style.pointerEvents=""/*** */
         }, 1000);
